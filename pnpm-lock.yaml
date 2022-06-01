@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@babel/core': ^7.18.2
   '@babel/preset-env': ^7.18.2
+  '@babel/preset-react': ^7.17.12
   '@remix-run/dev': ^1.5.1
   '@remix-run/eslint-config': ^1.5.1
   '@remix-run/node': ^1.5.1
@@ -28,6 +29,7 @@ dependencies:
 devDependencies:
   '@babel/core': 7.18.2
   '@babel/preset-env': 7.18.2_@babel+core@7.18.2
+  '@babel/preset-react': 7.17.12_@babel+core@7.18.2
   '@remix-run/dev': 1.5.1_52uijxcusadoynlo2ghf3cliju
   '@remix-run/eslint-config': 1.5.1_ayycmnu6ctgy4baym4n633rb7y
   '@tauri-apps/cli': 1.0.0-rc.13
