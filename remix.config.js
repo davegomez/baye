@@ -3,6 +3,7 @@
  */
 module.exports = {
   ignoredRouteFiles: ["**/.*"],
+  serverDependenciesToBundle: [/^env-paths.*/],
   // appDirectory: "app",
   // assetsBuildDirectory: "public/build",
   // serverBuildPath: "build/index.js",
