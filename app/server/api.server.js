@@ -1,14 +1,9 @@
-import { ssbServer } from "~/server/ssb.server";
 import * as profile from "~/server/entities/profile";
 
-export async function getProfile(id = "self") {
+export async function getProfile(ssb, id = "self") {
   try {
-    const ssb = ssbServer();
-
     return profile.getProfile(ssb, id === "self" ? ssb.id : id);
-  } catch (err) {
-    console.error("getProfile: ", err);
-
-    throw err;
+  } catch ({ message, name }) {
+    throw new Error(`${name} on getProfile: ${message}`);
   }
 }

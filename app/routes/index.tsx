@@ -2,13 +2,15 @@ import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { getProfile } from "~/server/api.server";
+import { ssbServer } from "~/server/ssb.server";
 
 type LoaderData = {
   id: string;
 };
 
 export const loader: LoaderFunction = async () => {
-  const profile = await getProfile();
+  const ssb = ssbServer();
+  const profile = await getProfile(ssb);
 
   return json({ profile });
 };
