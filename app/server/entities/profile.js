@@ -7,9 +7,9 @@ async function getSSBProfile(ssb, feedId) {
       try {
         const profile = ssb.db.getIndex("aboutSelf").getProfile(feedId);
         resolve(profile);
-      } catch (err) {
-        console.error(err);
-        reject(err);
+      } catch (e) {
+        console.error(`${e.name} while getting profile data: ${e.message}`);
+        reject(e);
       }
     });
   });
@@ -25,8 +25,8 @@ export async function getProfile(ssb, feedId) {
         if (image) {
           imageBlob = await getBlob(ssb, image);
         }
-      } catch (e) {
-        console.error("Error getting image", e);
+      } catch ({ message, name }) {
+        throw new Error(`${name} while getting image: ${message}`);
       }
 
       const profile = {

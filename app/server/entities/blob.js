@@ -6,11 +6,11 @@ export async function getBlob(ssb, blobId) {
   return new Promise((resolve) => {
     pull(
       bufferSource,
-      pull.collect(async (err, bufferArray) => {
-        if (err) {
-          await ssb.blobs.want(blobId, (err, done) => {
-            if (err) {
-              console.error(err);
+      pull.collect(async (e, bufferArray) => {
+        if (e) {
+          await ssb.blobs.want(blobId, (e, done) => {
+            if (e) {
+              console.error(`Error while getting blob data: ${e}`);
             }
           });
 
