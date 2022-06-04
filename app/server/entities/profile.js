@@ -1,5 +1,5 @@
 import { getBlob } from "~/server/entities/blob";
-import { socialGraph } from "~/server/entities/utils/social-graph";
+import * as socialGraph from "~/server/entities/utils/social-graph";
 
 async function getSSBProfile(ssb, feedId) {
   return new Promise((resolve, reject) => {
