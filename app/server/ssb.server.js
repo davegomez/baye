@@ -24,7 +24,8 @@ export function ssbServer() {
     .use(require("ssb-db2"))
     .use(require("ssb-db2/compat"))
     .use(require("ssb-db2/about-self"))
-    .use(require("ssb-blobs"));
+    .use(require("ssb-blobs"))
+    .use(require("ssb-friends"));
 
   global._ssbServer = ssb(config);
 

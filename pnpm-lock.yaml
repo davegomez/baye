@@ -25,6 +25,7 @@ specifiers:
   ssb-caps: ^1.1.0
   ssb-config: ^3.4.6
   ssb-db2: ^4.1.3
+  ssb-friends: ^5.1.5
   ssb-keys: ^8.2.1
   typescript: ^4.6.4
 
@@ -44,6 +45,7 @@ dependencies:
   ssb-caps: 1.1.0
   ssb-config: 3.4.6
   ssb-db2: 4.1.3
+  ssb-friends: 5.1.5
   ssb-keys: 8.2.1
 
 devDependencies:
@@ -2465,6 +2467,10 @@ packages:
       - supports-color
     dev: false
 
+  /async-single/1.0.5:
+    resolution: {integrity: sha512-I0SMZyvxwnr00advlzQbcfztaSEBv3Dw7Vg5i7pJVrXfjqHJSP1wljuOFKanBec5WKd+V4CIF4F9nhsukBikHA==}
+    dev: false
+
   /atob/2.1.2:
     resolution: {integrity: sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==}
     engines: {node: '>= 4.5.0'}
@@ -2474,6 +2480,14 @@ packages:
   /atomic-file-rw/0.2.2:
     resolution: {integrity: sha512-XZOcMIc32aIDxKFJGpYIPZ7H0p+Zmu3xAYyKDMmRgSQMNR97E8byl4tQa9vkYv4x8dNcYRQV8tw+KvtiKua0xQ==}
     dependencies:
+      idb-kv-store: 4.5.0
+      mutexify: 1.4.0
+    dev: false
+
+  /atomic-file/2.1.1:
+    resolution: {integrity: sha512-Eh6pW+fRC2/1RxPq3hO8+PkZKv+wujzKky2MP/n69eC8yMkbNFfuEb/riZHqf13M7gr6Hvglpk/kISgBSBb6bQ==}
+    dependencies:
+      flumecodec: 0.0.1
       idb-kv-store: 4.5.0
       mutexify: 1.4.0
     dev: false
@@ -3248,6 +3262,17 @@ packages:
       mimic-response: 3.1.0
     dev: true
 
+  /deep-equal/1.1.1:
+    resolution: {integrity: sha512-yd9c5AdiqVcR+JjcwUQb9DkhJc8ngNr0MahEBGvDiJw8puWab2yZlh+nkasOnZP+EGTAP6rRp2JzJhJZzvNF8g==}
+    dependencies:
+      is-arguments: 1.1.1
+      is-date-object: 1.0.5
+      is-regex: 1.1.4
+      object-is: 1.1.5
+      object-keys: 1.1.1
+      regexp.prototype.flags: 1.4.3
+    dev: false
+
   /deep-extend/0.6.0:
     resolution: {integrity: sha512-LOHxIOaPYdHlJRtCQfDIVZtfw/ufM8+rVj649RIHzcm/vGwQRXFt6OPqIFWsm2XEMrNIEtWR64sY1LEKD2vAOA==}
     engines: {node: '>=4.0.0'}
@@ -3386,6 +3411,13 @@ packages:
       readable-stream: 2.3.7
       stream-shift: 1.0.1
     dev: true
+
+  /dynamic-dijkstra/1.0.2:
+    resolution: {integrity: sha512-1N+eCCrepIeK1+qtWrMEO1CV68Hn+TLbiR9c70VB3xnut3DmUxT+3T7sRHhb0mpK2F/74IfP+loQDriU2W9lkA==}
+    dependencies:
+      heap: 0.2.7
+      rng: 0.2.2
+    dev: false
 
   /ed2curve/0.1.4:
     resolution: {integrity: sha512-hDZWhCHZ1wu4P2g2RVsM2MjDmmJzhvcsXr5qHUSBJZXvuhJSunhbVsWoBXdIe0/yTa3RV4UaWpOmFmrVsKr0wA==}
@@ -4419,6 +4451,12 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: true
 
+  /flumecodec/0.0.0:
+    resolution: {integrity: sha512-1UhNtCE8Al1mMrEqvRGxKU2GoZHXPKLWmAm6Oe2J9x+oQeMinCW9jpegJaEuGgUtro94MogbObFjEBFJHc36fA==}
+    dependencies:
+      level-codec: 6.2.0
+    dev: false
+
   /flumecodec/0.0.1:
     resolution: {integrity: sha512-JT0xivzdV7uTucjsLMw6JhK2e1K5TmU4fGmoQqnrJbydgY/V6+m71QoxX5ZtRR1pKoD48uhPDWWE6G5MlNoGkg==}
     dependencies:
@@ -4438,6 +4476,18 @@ packages:
       pull-looper: 1.0.0
       pull-stream: 3.6.14
       uint48be: 2.0.1
+    dev: false
+
+  /flumeview-reduce/1.4.0:
+    resolution: {integrity: sha512-ShCMtY5YZl3icnUAWTfwzRXSGN1AUo4Isj1wTRLpMMNgM9p1T0gc6N+r1ajampf1GO19SkqrgZHdPPOaEitvhg==}
+    dependencies:
+      async-single: 1.0.5
+      atomic-file: 2.1.1
+      deep-equal: 1.1.1
+      flumecodec: 0.0.0
+      obv: 0.0.1
+      pull-notify: 0.1.2
+      pull-stream: 3.6.14
     dev: false
 
   /for-each/0.3.3:
@@ -4754,6 +4804,10 @@ packages:
   /hast-util-whitespace/2.0.0:
     resolution: {integrity: sha512-Pkw+xBHuV6xFeJprJe2BBEoDV+AvQySaz3pPDRUs5PNZEMQjpXJJueqrpcHIXxnWTcAGi/UOCgVShlkY6kLoqg==}
     dev: true
+
+  /heap/0.2.7:
+    resolution: {integrity: sha512-2bsegYkkHO+h/9MGbn6KWcE45cHZgPANo5LXF7EvWdT0yT2EguSVO1nDgU5c8+ZOPwp2vMNa7YFsJhVcDR9Sdg==}
+    dev: false
 
   /history/5.3.0:
     resolution: {integrity: sha512-ZqaKwjjrAYUYfLG+htGaIIZ4nioX2L70ZUMIFysS3xvBsSG4x/n1V6TXV3N8ZYNuFGlDirFg32T7B6WOUPDYcQ==}
@@ -5409,6 +5463,15 @@ packages:
     dependencies:
       language-subtag-registry: 0.3.21
     dev: true
+
+  /layered-graph/1.1.3:
+    resolution: {integrity: sha512-0lACDagchA0cEiOxP90bLJm8Asxw5p089BozVvPAcKYPigQBxA1Ca4foEPBuz4x8RRZYybiksc/qBR1YurSUHA==}
+    dependencies:
+      dynamic-dijkstra: 1.0.2
+      pull-cont: 0.1.1
+      pull-notify: 0.1.2
+      pull-stream: 3.6.14
+    dev: false
 
   /level-codec/6.2.0:
     resolution: {integrity: sha512-J437PvCMZZKNT88+VRh6dkmh1ndZzwGwDzb5ZZl3QEsl+U9wIlt8hG+Y1gXVOhH75gf8JyceKGiG6WFUBbxyGQ==}
@@ -6479,6 +6542,14 @@ packages:
   /object-inspect/1.12.2:
     resolution: {integrity: sha512-z+cPxW0QGUp0mcqcsgQyLVRDoXFQbXOwBaqyF7VIgI4TWNQsDHrBpUQslRmIfAoYWdYzs6UlKJtB2XJpTaNSpQ==}
 
+  /object-is/1.1.5:
+    resolution: {integrity: sha512-3cyDsyHgtmi7I7DfSSI2LDp6SK2lwvtbg0p0R1e0RvTqF5ceGx+K2dfSjm1bKDMVCFEDAQvy+o8c6a7VujOddw==}
+    engines: {node: '>= 0.4'}
+    dependencies:
+      call-bind: 1.0.2
+      define-properties: 1.1.4
+    dev: false
+
   /object-keys/1.1.1:
     resolution: {integrity: sha512-NuAESUOUMrlIXOfHKzD6bpPu3tYt3xvjNdRIQ+FeT0lNb4K8WR70CaDxhuNguS2XG+GjkyMwOzsN5ZktImfhLA==}
     engines: {node: '>= 0.4'}
@@ -6874,7 +6945,7 @@ packages:
     dev: false
 
   /promisize/1.1.2:
-    resolution: {integrity: sha1-m0fiyyrkl+seutwsQZHWTRXJSdE=}
+    resolution: {integrity: sha512-6/X05CD1iri6YyLy6TW7a23HY0igsrb/qetltYKfJznLfzmspWtN/cY/UR0By3M5i13hBDWfmM2P42ovKl3GAw==}
     dev: false
 
   /prop-types/15.8.1:
@@ -6934,7 +7005,7 @@ packages:
     dev: false
 
   /pull-cont/0.1.1:
-    resolution: {integrity: sha1-3x1YDicXV7qay666IN4kIdZg1hg=}
+    resolution: {integrity: sha512-OAJRFBoEW00F0++qkeNuIWdaUwqrlZGj/6JAm+094iWKDnuzBXUWi2IipDqNa+yzIJrOE8BjwugiyGtLvPAk4w==}
     dev: false
 
   /pull-cursor/3.0.0:
@@ -6966,6 +7037,10 @@ packages:
     resolution: {integrity: sha512-yP3hNN3C0PrxA5isqyzHvsvFxd7Ohjvp4aLreeHm8mhnipxUfbY08Mk7o/KDsnR8N4WT9W3CqMDysU+ZufMr6w==}
     dependencies:
       pull-utf8-decoder: 1.0.2
+    dev: false
+
+  /pull-flatmap/0.0.1:
+    resolution: {integrity: sha512-9BgwZPZ6J22kPf9ExoVI3m2yMHdCK8uPf58p6L63t36IgH7NrCX+p3QV8cQ4JmYjwvXDZzimVuJ7IW7iLxm7cA==}
     dev: false
 
   /pull-fs/1.1.6:
@@ -7592,6 +7667,10 @@ packages:
     dependencies:
       glob: 7.2.3
 
+  /rng/0.2.2:
+    resolution: {integrity: sha1-30PoDZvIKtRDC8/vA/SccX6LLow=}
+    dev: false
+
   /rollup-plugin-inject/3.0.2:
     resolution: {integrity: sha512-ptg9PQwzs3orn4jkgXJ74bfs5vYz1NCZlSQMBUA0wKcGp5i5pA1AO3fOUEte8enhGUC+iapTCzEWw2jEFFUO/w==}
     deprecated: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-inject.
@@ -8117,6 +8196,26 @@ packages:
       ssb-validate2-rsjs-node: 1.0.4
       too-hot: 1.0.0
       typedarray-to-buffer: 4.0.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
+  /ssb-friends/5.1.5:
+    resolution: {integrity: sha512-/zLZo77rroi7ClR3pyEX9Nt4Y/oI/tBAXc+ZUUExHPNRUJDEF+9YFwznKplz4u6YLpAJe5RW67UNtGNcSJYAMg==}
+    engines: {node: '>=10'}
+    dependencies:
+      bipf: 1.6.5
+      flumecodec: 0.0.1
+      flumeview-reduce: 1.4.0
+      layered-graph: 1.1.3
+      pull-cont: 0.1.1
+      pull-flatmap: 0.0.1
+      pull-level: 2.0.4
+      pull-notify: 0.1.2
+      pull-pushable: 2.2.0
+      pull-stream: 3.6.14
+      ssb-db2: 4.1.3
+      ssb-ref: 2.16.0
     transitivePeerDependencies:
       - supports-color
     dev: false
