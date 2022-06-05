@@ -1,11 +1,11 @@
-import { getBlob } from "~/server/entities/blob";
-import * as socialGraph from "~/server/entities/utils/social-graph";
+import { getBlob } from '~/server/entities/blob';
+import * as socialGraph from '~/server/entities/utils/social-graph';
 
 async function getSSBProfile(ssb, feedId) {
   return new Promise((resolve, reject) => {
-    ssb.db.onDrain("aboutSelf", () => {
+    ssb.db.onDrain('aboutSelf', () => {
       try {
-        const profile = ssb.db.getIndex("aboutSelf").getProfile(feedId);
+        const profile = ssb.db.getIndex('aboutSelf').getProfile(feedId);
         resolve(profile);
       } catch (e) {
         console.error(`${e.name} while getting profile data: ${e.message}`);
@@ -20,10 +20,10 @@ export async function getProfile(ssb, feedId) {
     try {
       const {
         name,
-        description = "",
-        image = "",
+        description = '',
+        image = '',
       } = await getSSBProfile(ssb, feedId);
-      let imageBlob = "";
+      let imageBlob = '';
 
       try {
         if (image) {

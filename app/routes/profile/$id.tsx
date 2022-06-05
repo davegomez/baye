@@ -1,10 +1,10 @@
-import type { LoaderFunction } from "@remix-run/node";
-import { json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
-import { BanIcon, UserAddIcon, UsersIcon } from "@heroicons/react/solid";
-import clsx from "clsx";
-import { getProfile } from "~/server/api.server";
-import { ssbServer } from "~/server/ssb.server";
+import type { LoaderFunction } from '@remix-run/node';
+import { json } from '@remix-run/node';
+import { useLoaderData } from '@remix-run/react';
+import { BanIcon, UserAddIcon, UsersIcon } from '@heroicons/react/solid';
+import clsx from 'clsx';
+import { getProfile } from '~/server/api.server';
+import { ssbServer } from '~/server/ssb.server';
 
 interface Profile {
   description: string;
@@ -63,30 +63,30 @@ export default function IdRoute() {
               <button
                 type="button"
                 className={clsx(
-                  "inline-flex justify-center px-4 py-2 border text-sm shadow-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500",
+                  'inline-flex justify-center px-4 py-2 border text-sm shadow-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500',
                   following
-                    ? "bg-green-500 hover:bg-green-700 text-white border-transparent"
-                    : "border-gray-300 text-gray-700 bg-white hover:bg-gray-50"
+                    ? 'bg-green-500 hover:bg-green-700 text-white border-transparent'
+                    : 'border-gray-300 text-gray-700 bg-white hover:bg-gray-50'
                 )}
               >
                 {following ? (
                   <UsersIcon
                     className={clsx(
-                      "-ml-1 mr-2 h-5 w-5",
-                      following ? "text-white" : "text-gray-400"
+                      '-ml-1 mr-2 h-5 w-5',
+                      following ? 'text-white' : 'text-gray-400'
                     )}
                     aria-hidden="true"
                   />
                 ) : (
                   <UserAddIcon
                     className={clsx(
-                      "-ml-1 mr-2 h-5 w-5",
-                      following ? "text-white" : "text-gray-400"
+                      '-ml-1 mr-2 h-5 w-5',
+                      following ? 'text-white' : 'text-gray-400'
                     )}
                     aria-hidden="true"
                   />
                 )}
-                <span>{following ? "Following" : "Follow"}</span>
+                <span>{following ? 'Following' : 'Follow'}</span>
               </button>
               <button
                 type="button"

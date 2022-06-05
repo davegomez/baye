@@ -4,20 +4,26 @@ specifiers:
   '@babel/core': ^7.18.2
   '@babel/preset-env': ^7.18.2
   '@babel/preset-react': ^7.17.12
+  '@heroicons/react': ^1.0.6
   '@remix-run/dev': ^1.5.1
   '@remix-run/eslint-config': ^1.5.1
   '@remix-run/node': ^1.5.1
   '@remix-run/react': ^1.5.1
   '@remix-run/serve': ^1.5.1
+  '@tailwindcss/forms': ^0.5.2
   '@tailwindcss/typography': ^0.5.2
   '@tauri-apps/api': 1.0.0-rc.6
   '@tauri-apps/cli': 1.0.0-rc.13
   '@types/react': ^17.0.45
   '@types/react-dom': ^17.0.17
+  ariakit: 2.0.0-next.29
+  clsx: ^1.1.1
   env-paths: ^3.0.0
   eslint: ^8.15.0
   mime: ^3.0.0
   npm-run-all: ^4.1.5
+  prettier: ^2.6.2
+  prettier-plugin-tailwindcss: ^0.1.11
   pull-file: ^1.1.0
   pull-stream: ^3.6.14
   react: ^17.0.2
@@ -33,10 +39,13 @@ specifiers:
   typescript: ^4.6.4
 
 dependencies:
+  '@heroicons/react': 1.0.6_react@17.0.2
   '@remix-run/node': 1.5.1_sfoxds7t5ydpegc3knd667wn6m
   '@remix-run/react': 1.5.1_sfoxds7t5ydpegc3knd667wn6m
   '@remix-run/serve': 1.5.1_sfoxds7t5ydpegc3knd667wn6m
   '@tauri-apps/api': 1.0.0-rc.6
+  ariakit: 2.0.0-next.29_sfoxds7t5ydpegc3knd667wn6m
+  clsx: 1.1.1
   env-paths: 3.0.0
   mime: 3.0.0
   pull-file: 1.1.0
@@ -57,12 +66,15 @@ devDependencies:
   '@babel/preset-react': 7.17.12_@babel+core@7.18.2
   '@remix-run/dev': 1.5.1_52uijxcusadoynlo2ghf3cliju
   '@remix-run/eslint-config': 1.5.1_ayycmnu6ctgy4baym4n633rb7y
+  '@tailwindcss/forms': 0.5.2_tailwindcss@3.0.24
   '@tailwindcss/typography': 0.5.2_tailwindcss@3.0.24
   '@tauri-apps/cli': 1.0.0-rc.13
   '@types/react': 17.0.45
   '@types/react-dom': 17.0.17
   eslint: 8.16.0
   npm-run-all: 4.1.5
+  prettier: 2.6.2
+  prettier-plugin-tailwindcss: 0.1.11_prettier@2.6.2
   tailwindcss: 3.0.24
   typescript: 4.7.2
 
@@ -1511,9 +1523,27 @@ packages:
       - supports-color
     dev: true
 
+  /@floating-ui/core/0.7.2:
+    resolution: {integrity: sha512-FRVAkSNU/vGXLIsgbggcs70GkXKEOXgBBbNpYPNHSaKsCAMMd00NrjbtKTesxkdv9xm9N3+XiDlcFGY6WnatBg==}
+    dev: false
+
+  /@floating-ui/dom/0.5.2:
+    resolution: {integrity: sha512-z1DnEa7F3d8Fm/eXSbii8UEGpcjZGkQaYYUI0WpEVgD3vBfebDW8j/3ysusxonuMexoigA+A3b/fYH7sEqiwyg==}
+    dependencies:
+      '@floating-ui/core': 0.7.2
+    dev: false
+
   /@gar/promisify/1.1.3:
     resolution: {integrity: sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==}
     dev: true
+
+  /@heroicons/react/1.0.6_react@17.0.2:
+    resolution: {integrity: sha512-JJCXydOFWMDpCP4q13iEplA503MQO3xLoZiKum+955ZCtHINWnx26CUxVxxFQu/uLb4LW3ge15ZpzIkXKkJ8oQ==}
+    peerDependencies:
+      react: '>= 16'
+    dependencies:
+      react: 17.0.2
+    dev: false
 
   /@humanwhocodes/config-array/0.9.5:
     resolution: {integrity: sha512-ObyMyWxZiCu/yTisA7uzx81s40xR2fD5Cg/2Kq7G02ajkNubJf6BopgDTmDyc3U7sXpNKM8cYOw7s7Tyr+DnCw==}
@@ -1838,6 +1868,15 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       defer-to-connect: 2.0.1
+    dev: true
+
+  /@tailwindcss/forms/0.5.2_tailwindcss@3.0.24:
+    resolution: {integrity: sha512-pSrFeJB6Bg1Mrg9CdQW3+hqZXAKsBrSG9MAfFLKy1pVA4Mb4W7C0k7mEhlmS2Dfo/otxrQOET7NJiJ9RrS563w==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
+    dependencies:
+      mini-svg-data-uri: 1.4.4
+      tailwindcss: 3.0.24
     dev: true
 
   /@tailwindcss/typography/0.5.2_tailwindcss@3.0.24:
@@ -2403,6 +2442,26 @@ packages:
     resolution: {integrity: sha512-V+SM7AbUwJ+EBnB8+DXs0hPZHO0W6pqBcc0dW90OwtVG02PswOu/teuARoLQjdDOH+t9pJgGnW5/Qmouf3gPJg==}
     engines: {node: '>=6.0'}
     dev: true
+
+  /ariakit-utils/0.17.0-next.20_react@17.0.2:
+    resolution: {integrity: sha512-OWUaYtOCoYLbB2kAOT0SsActG/wFdDtASDui71zIIDEaRpcnebKhp0+57a+SFDPoKOuNs0D87Rh6N0/2uF3jYg==}
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 17.0.2
+    dev: false
+
+  /ariakit/2.0.0-next.29_sfoxds7t5ydpegc3knd667wn6m:
+    resolution: {integrity: sha512-Lky9TU3qciTQjmt2m8IDK1RkGLubN8iK9e9boBrEQsme2sAyWbk9W3i7AxBfyz4szR7R2+bvzedAxwkG3PSe3A==}
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0
+      react-dom: ^17.0.0 || ^18.0.0
+    dependencies:
+      '@floating-ui/dom': 0.5.2
+      ariakit-utils: 0.17.0-next.20_react@17.0.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
 
   /arr-diff/4.0.0:
     resolution: {integrity: sha512-YVIQ82gZPGBebQV/a8dar4AitzCQs0jjXwMPZllpXMaGjXPYVUawSxQrRsjhjupyVxEvbHgUmIhKVlND+j02kA==}
@@ -3029,6 +3088,11 @@ packages:
     resolution: {integrity: sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==}
     engines: {node: '>=0.8'}
     dev: true
+
+  /clsx/1.1.1:
+    resolution: {integrity: sha512-6/bPho624p3S2pMyvP5kKBPXnI3ufHLObBFCfgx+LkeR5lg2XYy2hqZqUf45ypD8COn2bhgGJSUE+l5dhNBieA==}
+    engines: {node: '>=6'}
+    dev: false
 
   /collection-visit/1.0.0:
     resolution: {integrity: sha512-lNkKvzEeMBBjUGHZ+q6z9pSJla0KWAQPvtzhEV9+iGyQYG+pBpl7xKDhxoNSOZH2hhv0v5k0y2yAM4o4SjoSkw==}
@@ -6330,6 +6394,11 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
+  /mini-svg-data-uri/1.4.4:
+    resolution: {integrity: sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==}
+    hasBin: true
+    dev: true
+
   /minimatch/3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
     dependencies:
@@ -7134,8 +7203,23 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
+  /prettier-plugin-tailwindcss/0.1.11_prettier@2.6.2:
+    resolution: {integrity: sha512-a28+1jvpIZQdZ/W97wOXb6VqI762MKE/TxMMuibMEHhyYsSxQA8Ek30KObd5kJI2HF1ldtSYprFayXJXi3pz8Q==}
+    engines: {node: '>=12.17.0'}
+    peerDependencies:
+      prettier: '>=2.2.0'
+    dependencies:
+      prettier: 2.6.2
+    dev: true
+
   /prettier/2.6.1:
     resolution: {integrity: sha512-8UVbTBYGwN37Bs9LERmxCPjdvPxlEowx2urIL6urHzdb3SDq4B/Z6xLFCblrSnE4iKWcS6ziJ3aOYrc1kz/E2A==}
+    engines: {node: '>=10.13.0'}
+    hasBin: true
+    dev: true
+
+  /prettier/2.6.2:
+    resolution: {integrity: sha512-PkUpF+qoXTqhOeWL9fu7As8LXsIUZ1WYaJiY/a7McAQzxjk82OF0tibkFXVCDImZtWxbvojFjerkiLb0/q8mew==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true

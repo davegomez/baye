@@ -1,7 +1,7 @@
-import type { EntryContext } from "@remix-run/node";
-import { RemixServer } from "@remix-run/react";
-import { renderToString } from "react-dom/server";
-import { ssbServer } from "~/server/ssb.server";
+import type { EntryContext } from '@remix-run/node';
+import { RemixServer } from '@remix-run/react';
+import { renderToString } from 'react-dom/server';
+import { ssbServer } from '~/server/ssb.server';
 
 /*
  * Initialize the SSB Server on first load
@@ -18,9 +18,9 @@ export default function handleRequest(
     <RemixServer context={remixContext} url={request.url} />
   );
 
-  responseHeaders.set("Content-Type", "text/html");
+  responseHeaders.set('Content-Type', 'text/html');
 
-  return new Response("<!DOCTYPE html>" + markup, {
+  return new Response('<!DOCTYPE html>' + markup, {
     status: responseStatusCode,
     headers: responseHeaders,
   });

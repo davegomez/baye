@@ -1,4 +1,4 @@
-import pull from "pull-stream";
+import pull from 'pull-stream';
 
 export async function getBlob(ssb, blobId) {
   const bufferSource = ssb.blobs.get(blobId);
@@ -18,7 +18,7 @@ export async function getBlob(ssb, blobId) {
         } else {
           const buffer = Buffer.concat(bufferArray);
 
-          resolve(buffer.toString("base64"));
+          resolve(buffer.toString('base64'));
         }
       })
     );
