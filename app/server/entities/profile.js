@@ -18,7 +18,11 @@ async function getSSBProfile(ssb, feedId) {
 export async function getProfile(ssb, feedId) {
   return new Promise(async (resolve, reject) => {
     try {
-      let { name, description, image } = await getSSBProfile(ssb, feedId);
+      const {
+        name,
+        description = "",
+        image = "",
+      } = await getSSBProfile(ssb, feedId);
       let imageBlob = "";
 
       try {
@@ -30,11 +34,12 @@ export async function getProfile(ssb, feedId) {
       }
 
       const profile = {
+        description: description,
         id: feedId,
-        name: name || feedId.slice(1, 1 + 8),
-        description: description || "",
-        image: image || "",
+        image: image,
         imageBlob,
+        isSelf: ssb.id === feedId,
+        name: name || feedId.slice(1, 1 + 8),
       };
 
       if (feedId !== ssb.id) {

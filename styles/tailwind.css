@@ -26,4 +26,8 @@
   h6 {
     @apply text-xs;
   }
+
+  code {
+    @apply p-1 rounded text-sm text-gray-500 bg-slate-100;
+  }
 }
