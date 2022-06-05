@@ -30,4 +30,8 @@
   code {
     @apply p-1 rounded text-sm text-gray-500 bg-slate-100;
   }
+
+  .tooltip {
+    @apply py-1 px-2 rounded-md drop-shadow shadow-sm border border-slate-600 text-sm leading-5 bg-slate-700 text-white;
+  }
 }
