@@ -3,8 +3,13 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
-    "build": "remix build",
-    "dev": "remix dev",
+    "build": "run-s build:*",
+    "build:css": "npm run generate:css -- --minify",
+    "build:remix": "remix build",
+    "dev": "run-p dev:*",
+    "dev:css": "npm run generate:css -- --watch",
+    "dev:remix": "remix dev",
+    "generate:css": "npx tailwindcss -i ./styles/tailwind.css -o ./app/tailwind.css",
     "start": "remix-serve build",
     "tauri": "tauri"
   },
@@ -33,10 +38,13 @@
     "@babel/preset-react": "^7.17.12",
     "@remix-run/dev": "^1.5.1",
     "@remix-run/eslint-config": "^1.5.1",
+    "@tailwindcss/typography": "^0.5.2",
     "@tauri-apps/cli": "1.0.0-rc.13",
     "@types/react": "^17.0.45",
     "@types/react-dom": "^17.0.17",
     "eslint": "^8.15.0",
+    "npm-run-all": "^4.1.5",
+    "tailwindcss": "^3.0.24",
     "typescript": "^4.6.4"
   },
   "engines": {
