@@ -21,11 +21,17 @@ export function ssbServer() {
   });
 
   const ssb = SecretStack({ caps })
+    // Core
     .use(require('ssb-db2'))
     .use(require('ssb-db2/compat'))
     .use(require('ssb-db2/about-self'))
+    // Replication
+    .use(require('ssb-friends'))
+    // Queries
+    .use(require('ssb-db2/full-mentions'))
+    // Blobs
     .use(require('ssb-blobs'))
-    .use(require('ssb-friends'));
+    .use(require('ssb-serve-blobs'));
 
   global._ssbServer = ssb(config);
 
