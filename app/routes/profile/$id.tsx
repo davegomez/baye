@@ -2,10 +2,16 @@ import type { LoaderFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import { Tooltip, TooltipAnchor, useTooltipState } from 'ariakit/tooltip';
-import { BanIcon, UserAddIcon, UsersIcon } from '@heroicons/react/solid';
+import {
+  BanIcon,
+  PencilIcon,
+  UserAddIcon,
+  UsersIcon,
+} from '@heroicons/react/solid';
 import clsx from 'clsx';
 import { getProfile } from '~/server/api.server';
 import { ssbServer } from '~/server/ssb.server';
+import { Button } from '~/ui';
 
 interface Profile {
   description: string;
@@ -13,8 +19,8 @@ interface Profile {
   id: string;
   image: string;
   imageBlob: string;
+  isSelf: boolean;
   name: string;
-  self: boolean;
 }
 
 type LoaderData = {
@@ -30,7 +36,7 @@ export const loader: LoaderFunction = async ({ params: { id } }) => {
 
 export default function IdRoute() {
   const {
-    profile: { id, name, description, image, imageBlob, following },
+    profile: { description, following, id, image, imageBlob, isSelf, name },
   } = useLoaderData<LoaderData>();
   const idTooltip = useTooltipState();
 
@@ -66,44 +72,45 @@ export default function IdRoute() {
                 </TooltipAnchor>
               </div>
               <div className="mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
-                <button
-                  type="button"
-                  className={clsx(
-                    'inline-flex justify-center px-4 py-2 border text-sm shadow-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500',
-                    following
-                      ? 'bg-green-500 hover:bg-green-700 text-white border-transparent'
-                      : 'border-gray-300 text-gray-700 bg-white hover:bg-gray-50'
-                  )}
-                >
-                  {following ? (
-                    <UsersIcon
-                      className={clsx(
-                        '-ml-1 mr-2 h-5 w-5',
-                        following ? 'text-white' : 'text-gray-400'
-                      )}
+                {isSelf ? (
+                  <Button>
+                    <PencilIcon
+                      className="leading-icon text-white"
                       aria-hidden="true"
                     />
-                  ) : (
-                    <UserAddIcon
-                      className={clsx(
-                        '-ml-1 mr-2 h-5 w-5',
-                        following ? 'text-white' : 'text-gray-400'
+                    <span>Edit</span>
+                  </Button>
+                ) : (
+                  <>
+                    <Button variant={following ? 'primary' : 'white'}>
+                      {following ? (
+                        <UsersIcon
+                          className={clsx(
+                            'leading-icon',
+                            following ? 'text-white' : 'text-gray-400'
+                          )}
+                          aria-hidden="true"
+                        />
+                      ) : (
+                        <UserAddIcon
+                          className={clsx(
+                            'leading-icon',
+                            following ? 'text-white' : 'text-gray-400'
+                          )}
+                          aria-hidden="true"
+                        />
                       )}
-                      aria-hidden="true"
-                    />
-                  )}
-                  <span>{following ? 'Following' : 'Follow'}</span>
-                </button>
-                <button
-                  type="button"
-                  className="inline-flex justify-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-rose-600 hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                >
-                  <BanIcon
-                    className="-ml-1 mr-2 h-5 w-5 text-white"
-                    aria-hidden="true"
-                  />
-                  <span>Block</span>
-                </button>
+                      <span>{following ? 'Following' : 'Follow'}</span>
+                    </Button>
+                    <Button variant="error">
+                      <BanIcon
+                        className="leading-icon text-white"
+                        aria-hidden="true"
+                      />
+                      <span>Block</span>
+                    </Button>
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -121,7 +128,7 @@ export default function IdRoute() {
         </div>
       </div>
       <Tooltip state={idTooltip} className="tooltip">
-        Click to copy
+        Copy to clipboard
       </Tooltip>
     </>
   );
