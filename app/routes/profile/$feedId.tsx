@@ -11,12 +11,12 @@ import {
 import clsx from 'clsx';
 import { getProfile } from '~/server/api.server';
 import { ssbServer } from '~/server/ssb.server';
-import { Button } from '~/ui';
+import { Button, Markdown } from '~/ui';
 
 interface Profile {
   description: string;
   following?: boolean;
-  id: string;
+  feedId: string;
   image: string;
   imageBlob: string;
   isSelf: boolean;
@@ -27,16 +27,16 @@ type LoaderData = {
   profile: Profile;
 };
 
-export const loader: LoaderFunction = async ({ params: { id } }) => {
+export const loader: LoaderFunction = async ({ params: { feedId } }) => {
   const ssb = ssbServer();
-  const profile = await getProfile(ssb, id);
+  const profile = await getProfile(ssb, feedId);
 
   return json({ profile });
 };
 
 export default function IdRoute() {
   const {
-    profile: { description, following, id, image, imageBlob, isSelf, name },
+    profile: { description, following, feedId, image, imageBlob, isSelf, name },
   } = useLoaderData<LoaderData>();
   const idTooltip = useTooltipState();
 
@@ -68,7 +68,7 @@ export default function IdRoute() {
                   state={idTooltip}
                   className="flex-1 max-w-fit cursor-pointer"
                 >
-                  <code className="block truncate">{id}</code>
+                  <code className="block truncate">{feedId}</code>
                 </TooltipAnchor>
               </div>
               <div className="mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
@@ -122,10 +122,11 @@ export default function IdRoute() {
               state={idTooltip}
               className="flex-1 max-w-fit cursor-pointer"
             >
-              <code className="block truncate">{id}</code>
+              <code className="block truncate">{feedId}</code>
             </TooltipAnchor>
           </div>
         </div>
+        <Markdown>{description}</Markdown>
       </div>
       <Tooltip state={idTooltip} className="tooltip">
         Copy to clipboard

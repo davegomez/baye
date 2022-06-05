@@ -30,7 +30,9 @@
   code {
     @apply p-1 rounded text-sm text-gray-500 bg-slate-100;
   }
+}
 
+@layer components {
   .leading-icon {
     @apply -ml-1 mr-2 h-5 w-5;
   }

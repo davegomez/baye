@@ -1,8 +1,8 @@
 import * as profile from '~/server/entities/profile';
 
-export async function getProfile(ssb, id = 'self') {
+export async function getProfile(ssb, feedId = 'self') {
   try {
-    return profile.getProfile(ssb, id === 'self' ? ssb.id : id);
+    return profile.getProfile(ssb, feedId === 'self' ? ssb.id : feedId);
   } catch ({ message, name }) {
     throw new Error(`${name} on getProfile: ${message}`);
   }

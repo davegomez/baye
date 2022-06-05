@@ -34,8 +34,8 @@ export async function getProfile(ssb, feedId) {
       }
 
       const profile = {
-        description: description,
-        id: feedId,
+        description,
+        feedId,
         image: image,
         imageBlob,
         isSelf: ssb.id === feedId,
