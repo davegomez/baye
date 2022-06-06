@@ -1,8 +1,8 @@
 import { getBlob } from '~/server/entities/blob';
 import * as socialGraph from '~/server/entities/utils/social-graph';
 
-async function getSSBProfile(ssb, feedId) {
-  return new Promise((resolve, reject) => {
+const getSSBProfile = async (ssb, feedId) =>
+  new Promise((resolve, reject) => {
     ssb.db.onDrain('aboutSelf', () => {
       try {
         const profile = ssb.db.getIndex('aboutSelf').getProfile(feedId);
@@ -13,10 +13,9 @@ async function getSSBProfile(ssb, feedId) {
       }
     });
   });
-}
 
-export async function getProfile(ssb, feedId) {
-  return new Promise(async (resolve, reject) => {
+export const getProfile = async (ssb, feedId) =>
+  new Promise(async (resolve, reject) => {
     try {
       const {
         name,
@@ -54,4 +53,3 @@ export async function getProfile(ssb, feedId) {
       reject(err);
     }
   });
-}

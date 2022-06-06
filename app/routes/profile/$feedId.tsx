@@ -34,7 +34,7 @@ export const loader: LoaderFunction = async ({ params: { feedId } }) => {
   return json({ profile });
 };
 
-export default function IdRoute() {
+const FeedId = () => {
   const {
     profile: { description, following, feedId, image, imageBlob, isSelf, name },
   } = useLoaderData<LoaderData>();
@@ -133,4 +133,6 @@ export default function IdRoute() {
       </Tooltip>
     </>
   );
-}
+};
+
+export default FeedId;

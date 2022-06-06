@@ -2,7 +2,7 @@ import caps from 'ssb-caps';
 import Config from 'ssb-config/inject';
 import SecretStack from 'secret-stack';
 
-export function ssbServer() {
+export const ssbServer = () => {
   if (global._ssbServer) {
     return global._ssbServer;
   }
@@ -36,4 +36,4 @@ export function ssbServer() {
   global._ssbServer = ssb(config);
 
   return global._ssbServer;
-}
+};

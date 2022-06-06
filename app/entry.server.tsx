@@ -8,12 +8,12 @@ import { ssbServer } from '~/server/ssb.server';
  */
 ssbServer();
 
-export default function handleRequest(
+const handleRequest = (
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
   remixContext: EntryContext
-) {
+) => {
   let markup = renderToString(
     <RemixServer context={remixContext} url={request.url} />
   );
@@ -24,4 +24,6 @@ export default function handleRequest(
     status: responseStatusCode,
     headers: responseHeaders,
   });
-}
+};
+
+export default handleRequest;

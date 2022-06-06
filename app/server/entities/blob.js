@@ -1,6 +1,6 @@
 import pull from 'pull-stream';
 
-export async function getBlob(ssb, blobId) {
+export const getBlob = async (ssb, blobId) => {
   const bufferSource = ssb.blobs.get(blobId);
 
   return new Promise((resolve) => {
@@ -23,4 +23,4 @@ export async function getBlob(ssb, blobId) {
       })
     );
   });
-}
+};
