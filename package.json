@@ -41,7 +41,8 @@
     "ssb-serve-blobs": "^3.1.1",
     "ssb-uri2": "^1.8.1",
     "tailwind-merge": "^1.2.1",
-    "unicode-word-regex": "^1.1.0"
+    "unicode-word-regex": "^1.1.0",
+    "unist-util-visit": "^4.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.2",
@@ -52,6 +53,7 @@
     "@tailwindcss/forms": "^0.5.2",
     "@tailwindcss/typography": "^0.5.2",
     "@tauri-apps/cli": "1.0.0-rc.13",
+    "@types/mdast": "^3.0.10",
     "@types/react": "^17.0.45",
     "@types/react-dom": "^17.0.17",
     "eslint": "^8.15.0",
