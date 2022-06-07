@@ -1,10 +1,29 @@
 import { remark } from 'remark';
-import SSBRef from 'ssb-ref';
-import { getFeedSSBURIRegex, getMessageSSBURIRegex } from 'ssb-uri2';
+import { visit } from 'unist-util-visit';
 import gemojiToEmoji from 'remark-gemoji-to-emoji';
 import linkifyRegex from 'remark-linkify-regex';
 import getUnicodeWordRegex from 'unicode-word-regex';
-import { imagesToSsbServeBlobs } from '~/utils';
+import SSBRef from 'ssb-ref';
+import { getFeedSSBURIRegex, getMessageSSBURIRegex } from 'ssb-uri2';
+import toUrl from 'ssb-serve-blobs/id-to-url';
+
+const BLOB_REF = `&${Buffer.alloc(32).toString('base64')}.sha256`;
+
+const imagesToSsbServeBlobs = () => (ast: any) => {
+  visit(ast, 'image', (image) => {
+    if (
+      image.url &&
+      typeof image.url === 'string' &&
+      SSBRef.isBlob(image.url.substr(0, BLOB_REF.length))
+    ) {
+      image.url = toUrl(image.url);
+    }
+
+    return image;
+  });
+
+  return ast;
+};
 
 /**
  * Match URIs *except* SSB URIs and File URIs
@@ -12,7 +31,7 @@ import { imagesToSsbServeBlobs } from '~/utils';
 const getMiscURIRegex = () =>
   /\b((?=[a-z]+:)(?!(ssb:|file:)))[a-z]+:(\/\/)?[^ )\n]+/g;
 
-const processMarkdown = (rawMarkdown: string) => {
+export const preProcessMarkdown = async (rawMarkdown: string) => {
   const linkifySsbSigilFeeds = linkifyRegex(SSBRef.feedIdRegex);
   const linkifySsbSigilMsgs = linkifyRegex(SSBRef.msgIdRegex);
   const linkifySsbUriFeeds = linkifyRegex(getFeedSSBURIRegex());
@@ -22,7 +41,7 @@ const processMarkdown = (rawMarkdown: string) => {
     new RegExp('#(' + getUnicodeWordRegex().source + '|\\d|-)+', 'gu')
   );
 
-  const markdown = remark()
+  const markdown = await remark()
     .use(gemojiToEmoji)
     .use(linkifySsbSigilFeeds)
     .use(linkifySsbSigilMsgs)
@@ -31,9 +50,7 @@ const processMarkdown = (rawMarkdown: string) => {
     .use(linkifyMiscUris)
     .use(linkifyHashtags)
     .use(imagesToSsbServeBlobs)
-    .processSync(rawMarkdown);
+    .process(rawMarkdown);
 
   return markdown;
 };
-
-export default processMarkdown;

@@ -11,9 +11,10 @@ import {
 import clsx from 'clsx';
 import { getProfile } from '~/server/api.server';
 import { ssbServer } from '~/server/ssb.server';
+import { preProcessMarkdown } from '~/utils/markdown.server';
 import { Button, Markdown } from '~/ui';
 
-interface Profile {
+type LoaderData = {
   description: string;
   following?: boolean;
   feedId: string;
@@ -21,23 +22,22 @@ interface Profile {
   imageBlob: string;
   isSelf: boolean;
   name: string;
-}
-
-type LoaderData = {
-  profile: Profile;
 };
 
 export const loader: LoaderFunction = async ({ params: { feedId } }) => {
   const ssb = ssbServer();
-  const profile = await getProfile(ssb, feedId);
+  const feed = await getProfile(ssb, feedId);
+  const description = await preProcessMarkdown(feed.description);
 
-  return json({ profile });
+  return json({
+    ...feed,
+    description: description.value.toString(),
+  });
 };
 
 const FeedId = () => {
-  const {
-    profile: { description, following, feedId, image, imageBlob, isSelf, name },
-  } = useLoaderData<LoaderData>();
+  const { description, following, feedId, image, imageBlob, isSelf, name } =
+    useLoaderData<LoaderData>();
   const idTooltip = useTooltipState();
 
   return (
