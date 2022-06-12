@@ -1,8 +1,12 @@
-# Ignore artifacts:
-build
-coverage
-README.md
-src-tauri
-.vscode
-app/tailwind.css
-pnpm-lock.yaml
+.vscode/
+.DS_Store
+node_modules/
+src-tauri/
+
+/.cache
+/build
+/server-build
+/public/build
+/coverage
+
+app/styles

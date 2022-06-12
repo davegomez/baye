@@ -1,9 +1,16 @@
-node_modules
+.vscode/
+.DS_Store
+node_modules/
 
 /.cache
 /build
+/server-build
 /public/build
-.env
+/coverage
+tsconfig.tsbuildinfo
 
 /app/tailwind.css
-.vscode
+
+.env
+.env.production
+.envrc
