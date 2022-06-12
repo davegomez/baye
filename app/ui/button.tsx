@@ -1,12 +1,13 @@
 import * as React from 'react';
+import { Button as AriaButton } from 'ariakit/button';
 import { twMerge } from 'tailwind-merge';
 import clsx from 'clsx';
 
-type Props = {
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   className?: string;
   variant?: 'primary' | 'secondary' | 'white' | 'success' | 'error';
-};
+}
 
 export type Ref = HTMLButtonElement;
 
@@ -19,20 +20,21 @@ const variants = {
 };
 
 const Button = React.forwardRef<Ref, Props>(
-  ({ children, className, variant = 'primary' }: Props, ref) => (
-    <button
-      type="button"
+  ({ children, className, variant = 'primary', ...props }: Props, ref) => (
+    <AriaButton
       className={twMerge(
         clsx(
           'inline-flex justify-center px-4 py-2 border text-sm shadow-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500',
           variants[variant],
-          className
+          className,
+          props.disabled && 'opacity-30'
         )
       )}
+      {...props}
       ref={ref}
     >
       {children}
-    </button>
+    </AriaButton>
   )
 );
 

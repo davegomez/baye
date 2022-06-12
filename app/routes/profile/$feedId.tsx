@@ -73,7 +73,7 @@ const FeedId = () => {
               </div>
               <div className="mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
                 {isSelf ? (
-                  <Button>
+                  <Button type="button">
                     <PencilIcon
                       className="leading-icon text-white"
                       aria-hidden="true"
@@ -82,7 +82,10 @@ const FeedId = () => {
                   </Button>
                 ) : (
                   <>
-                    <Button variant={following ? 'primary' : 'white'}>
+                    <Button
+                      type="button"
+                      variant={following ? 'primary' : 'white'}
+                    >
                       {following ? (
                         <UsersIcon
                           className={clsx(
@@ -102,7 +105,7 @@ const FeedId = () => {
                       )}
                       <span>{following ? 'Following' : 'Follow'}</span>
                     </Button>
-                    <Button variant="error">
+                    <Button type="button" variant="error">
                       <BanIcon
                         className="leading-icon text-white"
                         aria-hidden="true"
