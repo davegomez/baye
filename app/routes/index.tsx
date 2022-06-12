@@ -1,4 +1,5 @@
-import { Link } from '@remix-run/react';
+import * as React from 'react'
+import {Link} from '@remix-run/react'
 
 const Index = () => (
   <div>
@@ -17,8 +18,16 @@ const Index = () => (
           Profile André
         </Link>
       </li>
+      <li>
+        <Link
+          to="/profile/@9RSVfw4+fTzDRh3SiNWWhrR1fM9RT5fsRPw4QHtp4Ks=.ed25519"
+          prefetch="intent"
+        >
+          Someone else
+        </Link>
+      </li>
     </ul>
   </div>
-);
+)
 
-export default Index;
+export default Index

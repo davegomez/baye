@@ -1,44 +1,46 @@
-import type { LoaderFunction } from '@remix-run/node';
-import { json } from '@remix-run/node';
-import { useLoaderData } from '@remix-run/react';
-import { Tooltip, TooltipAnchor, useTooltipState } from 'ariakit/tooltip';
+import * as React from 'react'
+import type {LoaderFunction} from '@remix-run/node'
+import {json} from '@remix-run/node'
+import {useLoaderData} from '@remix-run/react'
+import {Tooltip, TooltipAnchor, useTooltipState} from 'ariakit/tooltip'
 import {
   BanIcon,
   PencilIcon,
   UserAddIcon,
   UsersIcon,
-} from '@heroicons/react/solid';
-import clsx from 'clsx';
-import { getProfile } from '~/server/api.server';
-import { ssbServer } from '~/server/ssb.server';
-import { preProcessMarkdown } from '~/utils/markdown.server';
-import { Button, Markdown } from '~/ui';
+} from '@heroicons/react/solid'
+import clsx from 'clsx'
+import {getProfile} from '~/server/api.server'
+import {ssbServer} from '~/server/ssb.server'
+import {preProcessMarkdown} from '~/utils/markdown.server'
+import {Button, Markdown} from '~/ui'
 
 type LoaderData = {
-  description: string;
-  following?: boolean;
-  feedId: string;
-  image: string;
-  imageBlob: string;
-  isSelf: boolean;
-  name: string;
-};
+  description: string
+  following?: boolean
+  feedId: string
+  image: string
+  imageBlob: string
+  isSelf: boolean
+  name: string
+}
 
-export const loader: LoaderFunction = async ({ params: { feedId } }) => {
-  const ssb = ssbServer();
-  const feed = await getProfile(ssb, feedId);
-  const description = await preProcessMarkdown(feed.description);
+export const loader: LoaderFunction = async ({params: {feedId}}) => {
+  const ssb = ssbServer()
+  const feed = await getProfile(ssb, feedId)
+
+  const description = await preProcessMarkdown(feed.description)
 
   return json({
     ...feed,
     description: description.value.toString(),
-  });
-};
+  })
+}
 
 const FeedId = () => {
-  const { description, following, feedId, image, imageBlob, isSelf, name } =
-    useLoaderData<LoaderData>();
-  const idTooltip = useTooltipState();
+  const {description, following, feedId, image, imageBlob, isSelf, name} =
+    useLoaderData<LoaderData>()
+  const idTooltip = useTooltipState()
 
   return (
     <>
@@ -90,7 +92,7 @@ const FeedId = () => {
                         <UsersIcon
                           className={clsx(
                             'leading-icon',
-                            following ? 'text-white' : 'text-gray-400'
+                            following ? 'text-white' : 'text-gray-400',
                           )}
                           aria-hidden="true"
                         />
@@ -98,7 +100,7 @@ const FeedId = () => {
                         <UserAddIcon
                           className={clsx(
                             'leading-icon',
-                            following ? 'text-white' : 'text-gray-400'
+                            following ? 'text-white' : 'text-gray-400',
                           )}
                           aria-hidden="true"
                         />
@@ -135,7 +137,7 @@ const FeedId = () => {
         Copy to clipboard
       </Tooltip>
     </>
-  );
-};
+  )
+}
 
-export default FeedId;
+export default FeedId

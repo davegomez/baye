@@ -1,26 +1,24 @@
-import caps from 'ssb-caps';
-import Config from 'ssb-config/inject';
-import SecretStack from 'secret-stack';
+import caps from 'ssb-caps'
+import createConfig from 'ssb-config/inject'
+import stack from 'secret-stack'
 
 export const ssbServer = () => {
   if (global._ssbServer) {
-    return global._ssbServer;
+    return global._ssbServer
   }
 
-  console.log('Starting SSB server');
+  console.log('Starting SSB server')
 
-  process.on('uncaughtException', function (err) {
-    console.error(err);
-  });
+  process.on('uncaughtException', err => console.error(err))
 
-  const config = Config(null, {
+  const config = createConfig(null, {
     db2: {
       automigrate: true,
       dangerouslyKillFlumeWhenMigrated: true,
     },
-  });
+  })
 
-  const ssb = SecretStack({ caps })
+  const ssb = stack({caps})
     // Core
     .use(require('ssb-db2'))
     .use(require('ssb-db2/compat'))
@@ -31,9 +29,9 @@ export const ssbServer = () => {
     .use(require('ssb-db2/full-mentions'))
     // Blobs
     .use(require('ssb-blobs'))
-    .use(require('ssb-serve-blobs'));
+    .use(require('ssb-serve-blobs'))
 
-  global._ssbServer = ssb(config);
+  global._ssbServer = ssb(config)
 
-  return global._ssbServer;
-};
+  return global._ssbServer
+}

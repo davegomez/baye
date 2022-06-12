@@ -1,26 +1,26 @@
-import * as React from 'react';
-import { twMerge } from 'tailwind-merge';
+import * as React from 'react'
+import {twMerge} from 'tailwind-merge'
 
 type Props = {
-  children: string;
-  className?: string;
-};
+  children: string
+  className?: string
+}
 
-export type Ref = HTMLDivElement;
+export type Ref = HTMLDivElement
 
 const Markdown = React.forwardRef<Ref, Props>(
-  ({ className, ...props }: Props, ref) => (
+  ({className, ...props}: Props, ref) => (
     <div
       {...props}
       className={twMerge(
         'prose max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 my-4',
-        className
+        className,
       )}
       ref={ref}
     />
-  )
-);
+  ),
+)
 
-Markdown.displayName = 'Markdown';
+Markdown.displayName = 'Markdown'
 
-export default Markdown;
+export default Markdown
