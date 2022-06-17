@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as mdxBundler from 'mdx-bundler/client'
-import {twMerge} from 'tailwind-merge'
+import { twMerge } from 'tailwind-merge'
 
 type Props = {
   content: string
@@ -10,7 +10,7 @@ type Props = {
 export type Ref = HTMLDivElement
 
 const Markdown = React.forwardRef<Ref, Props>(
-  ({className, content, ...props}: Props, ref) => {
+  ({ className, content, ...props }: Props, ref) => {
     const Content = mdxBundler.getMDXComponent(content)
     return (
       <div

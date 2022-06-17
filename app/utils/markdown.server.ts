@@ -7,13 +7,13 @@ const getMiscURIRegex = () =>
   /\b((?=[a-z]+:)(?!(ssb:|file:)))[a-z]+:(\/\/)?[^ )\n]+/g
 
 export const preProcessMarkdown = async (rawMarkdown: string) => {
-  const {default: gemojiToEmoji} = await import('remark-gemoji-to-emoji')
-  const {default: getUnicodeWordRegex} = await import('unicode-word-regex')
-  const {default: linkifyRegex} = await import('remark-linkify-regex')
-  const {default: SSBRef} = await import('ssb-ref')
-  const {getFeedSSBURIRegex, getMessageSSBURIRegex} = await import('ssb-uri2')
-  const {remark} = await import('remark')
-  const {visit} = await import('unist-util-visit')
+  const { default: gemojiToEmoji } = await import('remark-gemoji-to-emoji')
+  const { default: getUnicodeWordRegex } = await import('unicode-word-regex')
+  const { default: linkifyRegex } = await import('remark-linkify-regex')
+  const { default: SSBRef } = await import('ssb-ref')
+  const { getFeedSSBURIRegex, getMessageSSBURIRegex } = await import('ssb-uri2')
+  const { remark } = await import('remark')
+  const { visit } = await import('unist-util-visit')
 
   const linkifySsbSigilFeeds = linkifyRegex(SSBRef.feedIdRegex)
   const linkifySsbSigilMsgs = linkifyRegex(SSBRef.msgIdRegex)
@@ -58,14 +58,14 @@ export const preProcessMarkdown = async (rawMarkdown: string) => {
 }
 
 export const compileMarkdown = async (processedMarkdown: string) => {
-  const {bundleMDX} = await import('mdx-bundler')
+  const { bundleMDX } = await import('mdx-bundler')
 
   try {
-    const {code} = await bundleMDX({
+    const { code } = await bundleMDX({
       source: processedMarkdown,
     })
 
-    return {code}
+    return { code }
   } catch (e: unknown) {
     throw new Error(`Markdown compilation error ${e}`)
   }

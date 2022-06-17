@@ -1,4 +1,4 @@
-import {getBlob} from '~/server/entities/blob'
+import { getBlob } from '~/server/entities/blob'
 import * as socialGraph from '~/server/entities/utils/social-graph'
 
 const getSSBProfile = async (ssb, feedId) =>

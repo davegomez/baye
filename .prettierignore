@@ -10,3 +10,5 @@ src-tauri/
 /coverage
 
 app/styles
+
+pnpm-lock.yaml

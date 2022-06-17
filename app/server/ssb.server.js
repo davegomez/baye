@@ -18,7 +18,7 @@ export const ssbServer = () => {
     },
   })
 
-  const ssb = stack({caps})
+  const ssb = stack({ caps })
     // Core
     .use(require('ssb-db2'))
     .use(require('ssb-db2/compat'))

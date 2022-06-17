@@ -1,7 +1,7 @@
 import * as React from 'react'
-import {json} from '@remix-run/node'
-import {useLoaderData} from '@remix-run/react'
-import {Tooltip, TooltipAnchor, useTooltipState} from 'ariakit/tooltip'
+import { json } from '@remix-run/node'
+import { useLoaderData } from '@remix-run/react'
+import { Tooltip, TooltipAnchor, useTooltipState } from 'ariakit/tooltip'
 import {
   BanIcon,
   PencilIcon,
@@ -9,12 +9,12 @@ import {
   UsersIcon,
 } from '@heroicons/react/solid'
 import clsx from 'clsx'
-import {getProfile} from '~/server/api.server'
-import {ssbServer} from '~/server/ssb.server'
-import {compileMarkdown, preProcessMarkdown} from '~/utils/markdown.server'
-import {Button, Markdown} from '~/ui'
+import { getProfile } from '~/server/api.server'
+import { ssbServer } from '~/server/ssb.server'
+import { compileMarkdown, preProcessMarkdown } from '~/utils/markdown.server'
+import { Button, Markdown } from '~/ui'
 
-import type {LoaderFunction} from '@remix-run/node'
+import type { LoaderFunction } from '@remix-run/node'
 
 type LoaderData = {
   description: string
@@ -26,12 +26,12 @@ type LoaderData = {
   name: string
 }
 
-export const loader: LoaderFunction = async ({params: {feedId}}) => {
+export const loader: LoaderFunction = async ({ params: { feedId } }) => {
   const ssb = ssbServer()
   const feed = await getProfile(ssb, feedId)
 
   const processedMarkdown = await preProcessMarkdown(feed.description)
-  const {code} = await compileMarkdown(processedMarkdown.value.toString())
+  const { code } = await compileMarkdown(processedMarkdown.value.toString())
 
   return json({
     ...feed,
@@ -40,7 +40,7 @@ export const loader: LoaderFunction = async ({params: {feedId}}) => {
 }
 
 const FeedId = () => {
-  const {description, following, feedId, image, imageBlob, isSelf, name} =
+  const { description, following, feedId, image, imageBlob, isSelf, name } =
     useLoaderData<LoaderData>()
   const idTooltip = useTooltipState()
 

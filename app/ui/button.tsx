@@ -1,6 +1,6 @@
 import * as React from 'react'
-import {Button as AriaButton} from 'ariakit/button'
-import {twMerge} from 'tailwind-merge'
+import { Button as AriaButton } from 'ariakit/button'
+import { twMerge } from 'tailwind-merge'
 import clsx from 'clsx'
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -20,7 +20,7 @@ const variants = {
 }
 
 const Button = React.forwardRef<Ref, Props>(
-  ({children, className, variant = 'primary', ...props}: Props, ref) => (
+  ({ children, className, variant = 'primary', ...props }: Props, ref) => (
     <AriaButton
       className={twMerge(
         clsx(

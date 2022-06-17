@@ -1,8 +1,8 @@
 import * as React from 'react'
-import type {EntryContext} from '@remix-run/node'
-import {RemixServer} from '@remix-run/react'
-import {renderToString} from 'react-dom/server'
-import {ssbServer} from '~/server/ssb.server'
+import type { EntryContext } from '@remix-run/node'
+import { RemixServer } from '@remix-run/react'
+import { renderToString } from 'react-dom/server'
+import { ssbServer } from '~/server/ssb.server'
 
 /*
  * Initialize the SSB Server on first load
