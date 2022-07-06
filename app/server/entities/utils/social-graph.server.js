@@ -13,7 +13,7 @@
 // Blocking: -1
 // Not following and not blocking: -2
 
-export async function getSocialGraph(ssb) {
+export const getSocialGraph = async ssb => {
   const relationshipObject = await new Promise((resolve, reject) => {
     ssb.friends.graph((e, graph = {}) => {
       if (e) {

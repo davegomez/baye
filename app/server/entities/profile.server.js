@@ -1,5 +1,5 @@
-import { getBlob } from '~/server/entities/blob'
-import * as socialGraph from '~/server/entities/utils/social-graph'
+import { getBlob } from '~/server/entities/blob.server'
+import * as socialGraph from '~/server/entities/utils/social-graph.server'
 
 const getSSBProfile = async (ssb, feedId) =>
   new Promise((resolve, reject) => {
@@ -7,9 +7,9 @@ const getSSBProfile = async (ssb, feedId) =>
       try {
         const profile = ssb.db.getIndex('aboutSelf').getProfile(feedId)
         resolve(profile)
-      } catch (e) {
-        console.error(`${e.name} while getting profile data: ${e.message}`)
-        reject(e)
+      } catch (err) {
+        console.error(`${err.name} while getting profile data: ${err.message}`)
+        reject(err)
       }
     })
   })
@@ -28,8 +28,8 @@ export const getProfile = async (ssb, feedId) =>
         if (image) {
           imageBlob = await getBlob(ssb, image)
         }
-      } catch (e) {
-        throw new Error(`${e.name} while getting image: ${e.message}`)
+      } catch (err) {
+        throw new Error(`${err.name} while getting image: ${err.message}`)
       }
 
       const profile = {
