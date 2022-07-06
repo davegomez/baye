@@ -44,6 +44,7 @@ module.exports = {
     /^remark.*/,
     /^space-separated-tokens.*/,
     /^stringify-entities.*/,
+    /^trim-lines.*/,
     /^trough.*/,
     /^unified.*/,
     /^unist-builder.*/,
