@@ -18,11 +18,13 @@ specifiers:
   '@types/react': ^18.0.15
   '@types/react-dom': ^18.0.6
   ariakit: 2.0.0-next.32
+  async-append-only-log: ^4.2.5
   clsx: ^1.2.1
   env-paths: ^3.0.0
   esbuild: ^0.14.48
   eslint: ^8.19.0
   eslint-config-kentcdodds: ^20.3.1
+  jitdb: ^6.6.3
   mdx-bundler: ^9.0.1
   mime: ^3.0.0
   motion: ^10.11.2
@@ -45,6 +47,7 @@ specifiers:
   ssb-keys: ^8.4.0
   ssb-ref: ^2.16.0
   ssb-serve-blobs: ^3.1.1
+  ssb-threads: ^10.0.3
   ssb-uri2: ^1.9.0
   tailwind-merge: ^1.3.0
   tailwindcss: ^3.1.4
@@ -59,9 +62,11 @@ dependencies:
   '@remix-run/serve': 1.6.3_biqbaboplfbrettd7655fr4n2y
   '@tauri-apps/api': 1.0.1
   ariakit: 2.0.0-next.32_biqbaboplfbrettd7655fr4n2y
+  async-append-only-log: 4.2.5
   clsx: 1.2.1
   env-paths: 3.0.0
   esbuild: 0.14.48
+  jitdb: 6.6.3_qhawmhexuokfxu7z6imnm5trry
   mdx-bundler: 9.0.1_esbuild@0.14.48
   mime: 3.0.0
   motion: 10.11.2_biqbaboplfbrettd7655fr4n2y
@@ -81,6 +86,7 @@ dependencies:
   ssb-keys: 8.4.0
   ssb-ref: 2.16.0
   ssb-serve-blobs: 3.1.1
+  ssb-threads: 10.0.3_jitdb@6.6.3
   ssb-uri2: 1.9.0
   tailwind-merge: 1.3.0
   unicode-word-regex: 1.1.0
@@ -8622,6 +8628,10 @@ packages:
       pull-stream: 3.6.14
     dev: false
 
+  /secret-stack-decorators/1.1.0:
+    resolution: {integrity: sha512-wYl0Mcul/fuEbZwn9tN62c+W4LP2RPus/ilt3wdBNQqfBFSMlDXTLaIsrA4SEElb7JEBH4xzdQbOCnTvYHeWCA==}
+    dev: false
+
   /secret-stack/6.4.1:
     resolution: {integrity: sha512-7rRcTEj7t0H3ShMKQvv7QGYAUFjVRmDqNNgrvpdedVlVnEIyfkZu0RaFPpes6yUSiE9Iwi0lHi03+6HsltLCMA==}
     engines: {node: '>=5.10.0'}
@@ -9141,6 +9151,32 @@ packages:
       multiblob-http: 1.2.1
       pull-box-stream: 1.0.13
       pull-stream: 3.6.14
+    dev: false
+
+  /ssb-sort/1.1.3:
+    resolution: {integrity: sha512-oPsF8lGgcHcIb4F1GddV3CbZTJZ0OzxI9fHXH0Zc7ZjqjFlYdqMDxFSuvqJnmtDydJcswyGANiziP1ghd69jOw==}
+    dependencies:
+      ssb-ref: 2.16.0
+    dev: false
+
+  /ssb-threads/10.0.3_jitdb@6.6.3:
+    resolution: {integrity: sha512-JGZ6OWyGc0/u3wh31J4oIdnhtClcnwdYlLNYH7KGSrfVb30X9Fr65NQka1dnEHpBB7c7w8gDmrpTnIOwZiIH9A==}
+    engines: {node: '>=8'}
+    peerDependencies:
+      jitdb: '>=3.3.0'
+    dependencies:
+      bipf: 1.9.0
+      jitdb: 6.6.3_qhawmhexuokfxu7z6imnm5trry
+      pull-cat: 1.1.11
+      pull-level: 2.0.4
+      pull-stream: 3.6.14
+      secret-stack-decorators: 1.1.0
+      ssb-db2: 4.1.8
+      ssb-ref: 2.16.0
+      ssb-sort: 1.1.3
+      ssb-typescript: 2.8.0
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   /ssb-typescript/2.8.0:

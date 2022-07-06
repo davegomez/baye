@@ -9,7 +9,7 @@ import {
   UsersIcon,
 } from '@heroicons/react/solid'
 import clsx from 'clsx'
-import { getProfile } from '~/server/api.server'
+import { getProfile, getProfileThreads } from '~/server/api.server'
 import { ssbServer } from '~/server/ssb.server'
 import { compileMarkdown, preProcessMarkdown } from '~/utils/markdown.server'
 import { Button, Markdown } from '~/ui'
@@ -28,19 +28,22 @@ type LoaderData = {
 
 export const loader: LoaderFunction = async ({ params: { feedId } }) => {
   const ssb = ssbServer()
-  const feed = await getProfile(ssb, feedId)
+  const profile = await getProfile(ssb, feedId)
+  const profileThreads = await getProfileThreads(ssb, feedId)
 
-  const processedMarkdown = await preProcessMarkdown(feed.description)
+  console.log(profileThreads)
+
+  const processedMarkdown = await preProcessMarkdown(profile.description)
   const { code } = await compileMarkdown(processedMarkdown.value.toString())
 
   return json({
-    ...feed,
+    ...profile,
     description: code,
   })
 }
 
 const FeedId = () => {
-  const { description, following, feedId, image, imageBlob, isSelf, name } =
+  const { description, following, feedId, imageBlob, isSelf, name } =
     useLoaderData<LoaderData>()
   const idTooltip = useTooltipState()
 

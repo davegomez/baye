@@ -27,6 +27,7 @@ export const ssbServer = () => {
     .use(require('ssb-friends'))
     // Queries
     .use(require('ssb-db2/full-mentions'))
+    .use(require('ssb-threads'))
     // Blobs
     .use(require('ssb-blobs'))
     .use(require('ssb-serve-blobs'))
